@@ -41,20 +41,13 @@ namespace eventBookDesktop
         }
 
         public static void ShowEvent(Event e){
-            Console.WriteLine($"Name: {e.EventName}\tLocation: " +
+            var s = ($"Name: {e.EventName}\tLocation: " +
               $"{e.Location}\tDate: {e.EventDate}");
+
+            MessageBox.Show(s);
+
         }
 
-        static async Task<Event> GetProductAsync(string path)
-        {
-            Event e = null;
-            HttpResponseMessage response = await client.GetAsync(path);
-            if (response.IsSuccessStatusCode)
-            {
-                e = await response.Content.ReadAsAsync<Event>();
-            }
-            return e;
-        }
 
         static async void RunAsync()
         {
@@ -68,8 +61,8 @@ namespace eventBookDesktop
    
             if (response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
-                MessageBox.Show(content);
+                var content = await response.Content.ReadAsAsync<Event>();
+                ShowEvent(content);
             }
             else
             {
