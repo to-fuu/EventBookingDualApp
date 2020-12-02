@@ -33,8 +33,10 @@ namespace eventBookDesktop
         {
             InitializeComponent();
             //EventConsumer.ShowEvent(EventConsumer.GetEvent(client, 4).Result);
-            EventConsumer.ShowEvents(EventConsumer.GetEvents(client).Result);
+            // EventConsumer.ShowEvents(EventConsumer.GetEvents(client).Result);
+           EventConsumer.InsertEvent(new Event { EventName = "NANI", EventDate = DateTime.Now, Location = "There" }, client);
+
         }
-  
+
     }
 }

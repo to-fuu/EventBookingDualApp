@@ -39,6 +39,14 @@ namespace EventWebApp.Controllers.API
             return Ok(@event);
         }
 
+        [HttpPost("create")]
+        public async Task<ActionResult<Event>> Create([FromBody]Event @event)
+        {
+            _context.Events.Add(@event);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(@event.EventName), new { id = @event.ID }, @event);
+        }
+
     }
 
 }

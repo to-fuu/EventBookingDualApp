@@ -7,14 +7,14 @@ using System.Windows;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-
+using Newtonsoft.Json;
 
 namespace eventBookDesktop.Data.API
 {
     public static class EventConsumer
     {
 
-        public static async Task<Event> GetEvent(HttpClient client,int id)
+        public static async Task<Event> GetEvent(HttpClient client, int id)
         {
 
             // Update port # in the following line.
@@ -22,7 +22,7 @@ namespace eventBookDesktop.Data.API
             client.DefaultRequestHeaders.Accept.Add(
                new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = client.GetAsync("api/get/"+id).Result;
+            HttpResponseMessage response = client.GetAsync("api/get/" + id).Result;
 
             if (response.IsSuccessStatusCode)
             {
@@ -60,6 +60,23 @@ namespace eventBookDesktop.Data.API
 
         }
 
+        public static async Task<string> InsertEvent(Event @event, HttpClient client)
+        {
+            client.BaseAddress = new Uri("http://localhost:" + Settings.port + "/");
+            client.DefaultRequestHeaders.Accept.Add(
+               new MediaTypeWithQualityHeaderValue("application/json"));
+
+            string json = JsonConvert.SerializeObject(@event);
+            var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("api/create/", stringContent);
+
+            var responseString = await response.Content.ReadAsStringAsync();
+            MessageBox.Show(responseString);
+
+            return responseString;
+        }
+
         public static void ShowEvent(Event e)
         {
 
@@ -73,7 +90,7 @@ namespace eventBookDesktop.Data.API
 
         public static void ShowEvents(IEnumerable<Event> events)
         {
-            foreach(Event e in events)
+            foreach (Event e in events)
             {
                 ShowEvent(e);
             }
