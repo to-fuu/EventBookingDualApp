@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "O:\\FIA3 projects\\Projet NET\\Desktop\\eventBookDesktop\\eventBookDesktop\\eventBookDesktop.csproj",
+      "projectUniqueName": "O:\\FIA3 projects\\EventBookingDualApp\\eventBookDesktop\\eventBookDesktop\\eventBookDesktop.csproj",
       "projectName": "eventBookDesktop",
-      "projectPath": "O:\\FIA3 projects\\Projet NET\\Desktop\\eventBookDesktop\\eventBookDesktop\\eventBookDesktop.csproj",
+      "projectPath": "O:\\FIA3 projects\\EventBookingDualApp\\eventBookDesktop\\eventBookDesktop\\eventBookDesktop.csproj",
       "packagesPath": "C:\\Users\\GAMING\\.nuget\\packages\\",
-      "outputPath": "O:\\FIA3 projects\\Projet NET\\Desktop\\eventBookDesktop\\eventBookDesktop\\obj\\",
+      "outputPath": "O:\\FIA3 projects\\EventBookingDualApp\\eventBookDesktop\\eventBookDesktop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\GAMING\\AppData\\Roaming\\NuGet\\NuGet.Config",
