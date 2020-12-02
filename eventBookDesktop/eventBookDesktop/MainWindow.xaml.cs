@@ -17,6 +17,9 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
+using eventBookDesktop.Data.API;
+using eventBookDesktop.Data.Models;
+
 namespace eventBookDesktop
 {
     /// <summary>
@@ -25,51 +28,13 @@ namespace eventBookDesktop
     public partial class MainWindow : Window
     {
         static HttpClient client = new HttpClient();
-        public class Event
-        {
-            public int ID { get; set; }
-            public string EventName { get; set; }
-            public DateTime EventDate { get; set; }
-            public string Location { get; set; }
-
-        }
-
+       
         public MainWindow()
         {
             InitializeComponent();
-            RunAsync();
+            //EventConsumer.ShowEvent(EventConsumer.GetEvent(client, 4).Result);
+            EventConsumer.ShowEvents(EventConsumer.GetEvents(client).Result);
         }
-
-        public static void ShowEvent(Event e){
-            var s = ($"Name: {e.EventName}\tLocation: " +
-              $"{e.Location}\tDate: {e.EventDate}");
-
-            MessageBox.Show(s);
-
-        }
-
-
-        static async void RunAsync()
-        {
-
-            // Update port # in the following line.
-            client.BaseAddress = new Uri("http://localhost:52213/");
-            client.DefaultRequestHeaders.Accept.Add(
-               new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response = client.GetAsync("api/get/4").Result;
-   
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsAsync<Event>();
-                ShowEvent(content);
-            }
-            else
-            {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
-            }
-
-        }
-
+  
     }
 }
