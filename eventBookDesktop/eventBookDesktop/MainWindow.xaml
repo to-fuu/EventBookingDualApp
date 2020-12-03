@@ -6,7 +6,20 @@
         xmlns:local="clr-namespace:eventBookDesktop"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <WrapPanel  >
 
-    </Grid>
+        <WrapPanel.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="10,0" />
+            </Style>
+        </WrapPanel.Resources>
+        
+
+        <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="grdEvents" />
+
+        <Button Click="InsertLineTest" Width="84" Height="28" Canvas.Left="313" Canvas.Top="187">Insert</Button>
+
+
+
+    </WrapPanel>
 </Window>

@@ -27,16 +27,27 @@ namespace eventBookDesktop
     /// </summary>
     public partial class MainWindow : Window
     {
-        static HttpClient client = new HttpClient();
        
         public MainWindow()
         {
             InitializeComponent();
-            //EventConsumer.ShowEvent(EventConsumer.GetEvent(client, 4).Result);
-            // EventConsumer.ShowEvents(EventConsumer.GetEvents(client).Result);
-           EventConsumer.InsertEvent(new Event { EventName = "NANI", EventDate = DateTime.Now, Location = "There" }, client);
+
+            APIConsumer.Init();
+
+            UpdateTable();
+
 
         }
 
+        public async void InsertLineTest(object sender, RoutedEventArgs e)
+        {
+            await APIConsumer.Insert<Event>("events",new Event { EventName = "NANI", EventDate = DateTime.Now, Location = "There" });
+            UpdateTable();
+        }
+
+        public void UpdateTable()
+        {
+            grdEvents.ItemsSource = APIConsumer.GetAll<Event>("events").Result;
+        }
     }
 }
